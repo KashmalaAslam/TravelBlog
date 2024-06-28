@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
+import Script from "next/script";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
