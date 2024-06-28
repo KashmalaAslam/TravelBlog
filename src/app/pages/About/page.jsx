@@ -29,7 +29,7 @@ const About = () => {
                 </h1>
                 <p class="mt-4 text-xl text-gray-500">
                   This year, our new achievement will shelter you from the harsh
-                  elements of a world that doesn't care if you develop or die.
+                  elements of a world that does not care if you develop or die.
                 </p>
               </div>
               <div>
