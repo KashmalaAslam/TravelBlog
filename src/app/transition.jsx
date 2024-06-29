@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -17,18 +18,16 @@ export const Transition = ({ children }) => {
       }
     );
 
-    const currentRef = ref.current; // Create a variable to hold ref.current
-
-    if (currentRef) {
-      observer.observe(currentRef);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
+      if (ref.current) {
+        observer.unobserve(ref.current);
       }
     };
-  }, []); // Empty dependency array because ref doesn't change
+  }, []);
 
   return (
     <div ref={ref}>
