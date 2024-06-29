@@ -5,7 +5,7 @@ import { Transition } from "../../transition";
 import { useRef } from "react";
 import { TypingEffect } from "../../page_transition";
 
-const services = () => {
+const Services = () => {
   const servicesSectionRef = useRef(null);
   const handleLearnMoreClick = (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const services = () => {
         <div class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
           {/* Hero image and content */}
           <div class="absolute inset-0">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxjb2RlfGVufDB8MHx8fDE2OTQwOTg0MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080"
               alt="Background Image"
               class="object-cover object-center w-full h-full"
@@ -371,4 +371,4 @@ const services = () => {
   );
 };
 
-export default services;
+export default Services;

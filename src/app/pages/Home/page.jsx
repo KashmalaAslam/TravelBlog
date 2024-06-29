@@ -264,9 +264,7 @@ export default function Home() {
                   Exploring the deep seas is a fascinating venture into Earth
                   final frontier. This underwater world, largely unexplored,
                   holds countless mysteries and unique ecosystems. Using
-                  advanced submersibles and remote-operated vehicles, scientists
-                  uncover new species, bizarre geological formations, and clues
-                  to our planet history.
+                  advanced submersibles and remote-operated vehicles.
                 </p>
                 <div className="flex items-center justify-between mt-4">
                   <button className="bg-pink-500 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-700 mt-8">
