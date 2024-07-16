@@ -21,26 +21,26 @@ li:hover {
   display: flex;
   animation: 10s slide infinite linear;
   width: calc(
-    400px * 12
+    400px * 6
   ); /* 400px is the width of each image, 6 is the number of images */
 }
 
 @media (max-width: 640px) {
   .slide-track {
-    width: calc(100vw * 12); /* 100vw is the width of the viewport */
+    width: calc(100vw * 6); /* 100vw is the width of the viewport */
   }
 }
 
 @media (max-width: 768px) {
   .slide-track {
-    width: calc(50vw * 12); /* 50vw is half the width of the viewport */
+    width: calc(50vw * 6); /* 50vw is half the width of the viewport */
   }
 }
 
 @media (max-width: 1024px) {
   .slide-track {
     width: calc(
-      33.33vw * 12
+      33.33vw * 6
     ); /* 33.33vw is one-third the width of the viewport */
   }
 }

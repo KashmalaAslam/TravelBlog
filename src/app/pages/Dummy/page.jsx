@@ -1,7 +1,10 @@
 // pages/index.js
 "use client";
 import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { CountUp } from "countup.js";
+import Image from "next/image";
+import { Transition } from "src/app/transition";
 
 const Count = () => {
   const countUpRef = useRef(null);
@@ -39,9 +42,333 @@ const Count = () => {
       console.error(countUp3.error);
     }
   }, []);
+  const [isReadMore, setIsReadMore] = useState(false);
+
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  const aboutSectionRef = useRef(null);
+  const handleLearnMoreClick = (e) => {
+    e.preventDefault();
+    aboutSectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
+      <Transition>
+        <div className="relative overflow-hidden bg-white">
+          <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-32 lg:pb-48">
+            <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
+              <div className="sm:max-w-lg">
+                <h1 className="font text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+                  Adventures are finally here
+                </h1>
+                <p className="mt-4 text-xl text-gray-500">
+                  This year, our new achievement will shelter you from the harsh
+                  elements of a world that does not care if you develop or die.
+                </p>
+              </div>
+              <div>
+                <div>
+                  {/* <!-- Decorative image grid --> */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
+                  >
+                    <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
+                      <div className="flex items-center space-x-6 lg:space-x-8">
+                        <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                          <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
+                            <Image
+                              src="/images/slider1.jpg"
+                              alt=""
+                              width={300}
+                              height={300}
+                              className="h-full w-full object-cover object-center"
+                            ></Image>
+                          </div>
+                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                            <Image
+                              src="/images/slider2.jpg"
+                              alt=""
+                              width={300}
+                              height={300}
+                              className="h-full w-full object-cover object-center"
+                            ></Image>
+                          </div>
+                        </div>
+                        <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                            <Image
+                              src="/images/photo2.jpg"
+                              alt=""
+                              width={300}
+                              height={300}
+                              className="h-full w-full object-cover object-center"
+                            ></Image>
+                          </div>
+                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                            <Image
+                              src="/images/slider4.jpg"
+                              alt=""
+                              width={300}
+                              height={300}
+                              className="h-full w-full object-cover object-center"
+                            ></Image>
+                          </div>
+                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                            <Image
+                              src="/images/slider5.jpg"
+                              alt=""
+                              width={300}
+                              height={300}
+                              className="h-full w-full object-cover object-center"
+                            ></Image>
+                          </div>
+                        </div>
+                        <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                            <Image
+                              src="/images/astro.jpg"
+                              alt=""
+                              width={300}
+                              height={300}
+                              className="h-full w-full object-cover object-center"
+                            ></Image>
+                          </div>
+                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                            <Image
+                              src="/images/pic.jpg"
+                              alt=""
+                              width={300}
+                              height={300}
+                              className="h-full w-full object-cover object-center"
+                            ></Image>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href="#about"
+                    className="inline-block rounded-md border border-transparent bg-pink-600 py-3 px-8 text-center font-medium text-white hover:bg-pink-700 mt-6"
+                  >
+                    Learn More
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+
+      {/* About Me */}
+      <section className="bg-gray-100" id="about" ref={aboutSectionRef}>
+        <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+            <div className="mx-8">
+              <h2 className="font text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                About Us
+              </h2>
+              <div className="bg-pink-600 w-20 h-1 mx-8 my-4 rounded-xl"></div>
+              <p className="mt-4 text-gray-600 text-lg">
+                Welcome to Travel Blog! We are avid travelers with a passion for
+                exploring the world and sharing our adventures. Our journey
+                began in 2024, when we decided to turn our wanderlust into a way
+                of life and document every step along the way. We believe that
+                travel is not just about ticking off places from a bucket list,
+                but about immersing ourselves in diverse cultures, making
+                meaningful connections, and creating unforgettable memories.
+              </p>
+              <br />
+              {isReadMore && (
+                <div>
+                  <p className="mt-4 text-gray-600 text-lg">
+                    Our love for travel started with a spontaneous trip to
+                    [Destination] that opened our eyes to the beauty and
+                    diversity of the world. Since then, we’ve traveled to over
+                    [Number] countries and countless cities, each with its own
+                    unique charm and stories. Our blog is a culmination of years
+                    of adventure, learning, and a desire to inspire others to
+                    explore the globe.
+                  </p>
+                </div>
+              )}
+              <button
+                onClick={toggleReadMore}
+                className="text-pink-600 hover:text-blue-600 font-medium"
+              >
+                {isReadMore ? "Show less" : "Learn more about us →"}
+              </button>
+            </div>
+            <div className="mt-12 md:mt-0 mx-8 md:mx-0">
+              <Image
+                src="/images/about_us.jpg"
+                alt="About Us Image"
+                className="object-cover rounded-lg shadow-md"
+                width={400}
+                height={400}
+              ></Image>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section>
+        <page_transition>
+          <blockquote className="border-l-4 border-pink-600 italic my-16 pl-4 md:pl-8 py-4 ml-4 md:ml-[4.2rem] max-w-md">
+            <p className="text-lg font-medium">
+              The world is a book and those who do not travel read only one
+              page.
+            </p>
+            <cite className="block text-right mt-4 text-gray-600">
+              - Augustine of Hippo
+            </cite>
+          </blockquote>
+        </page_transition>
+
+        <p className="my-16 pl-8 md:pl-8 py-4 mx-4 md:mx-10">
+          My passion is travel, I just love visiting new places, immersing
+          myself into local cultures of life around the world and discovering
+          the unexpected! Stepping off a plane, I’m always in a hurry to get my
+          passport stamped, reclaim my luggage and walk out of the arrivals hall
+          ready to begin a new adventure. <br />I love the planning, the
+          anticipation, the journey, be it by plane, train, bus or boat and of
+          course, the actual holiday and finally all the wonderful memories and
+          experiences I bring home that live with me forever. That was the
+          original reason why I created this blog so that I could have an online
+          diary of my recent trips to look back on in the future. I’ve been
+          surprised but thrilled that so many of you have taken an interest in
+          my travels and enjoy reading about my trips – it’s very encouraging
+          and makes me very happy! From starting as a hobby my blog has evolved
+          into an award winning online travel resource providing inspiration to
+          fellow travellers.
+        </p>
+        {/* My Journey */}
+        <div className="relative h-screen w-full">
+          <Image
+            src={"/images/my_journey.jpg"}
+            alt="Background Image"
+            className="absolute inset-0 w-full h-full object-cover filter blur-sm"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+          ></Image>
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-0">
+            <h1 className="text-4xl text-white font-bold">My Journey</h1>
+            <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
+            <p className="text-xl text-white mt-4 max-w-lg">
+              Welcome to my corner of the internet! My journey into the world of
+              vlogging began in 2024, driven by an insatiable curiosity and a
+              desire to capture the essence of the places I visit and the people
+              I meet. Traveling has always been about more than just the
+              destination for me. It about the thrill of the unknown, the joy of
+              discovery, and the connections made along the way. On this site,
+              you&apos;ll find a diverse collection of vlogs that capture the
+              beauty and diversity of our world.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Most Loved Places */}
+      <Transition>
+        <section className="loved_places my-20">
+          <div className="text-4xl font-bold text-center">Some Photographs</div>
+          <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
+          <div className="relative overflow-hidden w-full">
+            <div className="slide-track grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-5">
+              <Image
+                src={"/images/photo1.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo1"
+              />
+              <Image
+                src={"/images/photo2.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo2"
+              />
+              <Image
+                src={"/images/photo3.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo3"
+              />
+              <Image
+                src={"/images/card1.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo4"
+              />
+              <Image
+                src={"/images/my_journey.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo5"
+              />
+              <Image
+                src={"/images/photo4.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo6"
+              />
+              <Image
+                src={"/images/photo1.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo1"
+              />
+              <Image
+                src={"/images/photo2.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo2"
+              />
+              <Image
+                src={"/images/photo3.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo3"
+              />
+              <Image
+                src={"/images/card1.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo4"
+              />
+              <Image
+                src={"/images/my_journey.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo5"
+              />
+              <Image
+                src={"/images/photo4.jpg"}
+                width={400}
+                height={400}
+                className="hover:opacity-75 rounded-xl object-cover"
+                alt="photo6"
+              />
+            </div>
+          </div>
+        </section>
+      </Transition>
       <div className="container px-5 pb-24 mx-auto">
         <div className="text-4xl font-bold text-center">We are known for</div>
         <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
