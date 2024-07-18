@@ -1,5 +1,5 @@
 import React from "react";
-import { Transition } from "src/app/transition";
+import { Transition } from "../../components/transition";
 
 const contact = () => {
   return (

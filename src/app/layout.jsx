@@ -5,7 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import React from "react";
-import { Transition } from "./transition";
+import { Transition } from "./components/transition";
 config.autoAddCss = false;
 const montserrat = Montserrat({ subsets: ["latin"] });
 

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Transition } from "../../transition";
+import { Transition } from "../../components/transition";
 import { useRef } from "react";
 import { TypingEffect } from "../../page_transition";
 
@@ -23,14 +23,15 @@ const Services = () => {
         <div class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
           {/* Hero image and content */}
           <div class="absolute inset-0">
-            <Image
-              src="/images/bg-img.jpg"
-              alt="Background Image"
-              class="object-cover object-center w-full h-full"
-              width={1000}
-              height={300}
-            />
-            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div className="w-full bg-cover bg-center opacity-85">
+              <video
+                src="/videos/services1.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+              ></video>
+            </div>
           </div>
 
           <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
@@ -329,21 +330,23 @@ const Services = () => {
           <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row -mx-4">
               <div class="md:flex-1 px-4">
-                <div class="h-[360px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
-                  <Image
-                    class="w-full h-full object-cover"
-                    src="/images/astro.jpg"
-                    alt="Product Image"
-                    width={300}
-                    height={300}
-                  ></Image>
+                <div class="h-[270px] rounded-lg bg-gray-300 dark:bg-gray-700 my-6">
+                  <video
+                    src="/videos/tour.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="object-center object-cover"
+                  ></video>
                 </div>
                 <div class="flex -mx-2 mb-4"></div>
               </div>
               <div class="md:flex-1 px-4">
                 <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-                  Adventure Tours
+                  <TypingEffect strings={["Adventure Tours"]} />
                 </h2>
+
                 <div className="bg-pink-600 w-20 h-1 my-4 rounded-xl"></div>
                 <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
                   Embark on thrilling adventures with our guided tours. Whether

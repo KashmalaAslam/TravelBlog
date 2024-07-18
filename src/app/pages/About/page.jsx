@@ -1,10 +1,24 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { CountUp } from "countup.js";
-import { Transition } from "src/app/transition";
+import { Transition } from "../../components/transition";
+import FadeInFromLeftParagraph from "../../components/paragraphTransition";
+import FadeInParagraph from "../../components/FadeIn";
 import Image from "next/image";
+import { TypingEffect } from "src/app/page_transition";
 
 const About = () => {
+  // for image slider to pause
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const countUpRef = useRef(null);
   const countUpRef1 = useRef(null);
   const countUpRef2 = useRef(null);
@@ -72,7 +86,7 @@ const About = () => {
   };
 
   return (
-    <div>
+    <div style={{ overflow: "hidden" }}>
       <Transition>
         <div className="relative overflow-hidden bg-white">
           <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-32 lg:pb-48">
@@ -190,27 +204,31 @@ const About = () => {
                 About Us
               </h2>
               <div className="bg-pink-600 w-20 h-1 mx-8 my-4 rounded-xl"></div>
-              <p className="mt-4 text-gray-600 text-lg">
-                Welcome to Travel Blog! We are avid travelers with a passion for
+              <div className="mt-4 text-gray-600 text-lg">
+                <FadeInFromLeftParagraph
+                  text="Welcome to Travel Blog! We are avid travelers with a passion for
                 exploring the world and sharing our adventures. Our journey
                 began in 2024, when we decided to turn our wanderlust into a way
                 of life and document every step along the way. We believe that
                 travel is not just about ticking off places from a bucket list,
                 but about immersing ourselves in diverse cultures, making
-                meaningful connections, and creating unforgettable memories.
-              </p>
+                meaningful connections, and creating unforgettable memories."
+                />
+              </div>
               <br />
               {isReadMore && (
                 <div>
-                  <p className="mt-4 text-gray-600 text-lg">
-                    Our love for travel started with a spontaneous trip to
+                  <div className="mt-4 text-gray-600 text-lg">
+                    <FadeInFromLeftParagraph
+                      text="Our love for travel started with a spontaneous trip to
                     [Destination] that opened our eyes to the beauty and
                     diversity of the world. Since then, we’ve traveled to over
                     [Number] countries and countless cities, each with its own
                     unique charm and stories. Our blog is a culmination of years
                     of adventure, learning, and a desire to inspire others to
-                    explore the globe.
-                  </p>
+                    explore the globe."
+                    />
+                  </div>
                 </div>
               )}
               <button
@@ -235,62 +253,69 @@ const About = () => {
 
       {/* Quote */}
       <section>
-        <page_transition>
-          <blockquote className="border-l-4 border-pink-600 italic my-16 pl-4 md:pl-8 py-4 ml-4 md:ml-[4.2rem] max-w-md">
-            <p className="text-lg font-medium">
-              The world is a book and those who do not travel read only one
-              page.
-            </p>
-            <cite className="block text-right mt-4 text-gray-600">
-              - Augustine of Hippo
-            </cite>
-          </blockquote>
-        </page_transition>
+        <blockquote className="border-l-4 border-pink-600 italic my-16 pl-4 md:pl-8 py-4 ml-4 md:ml-[4.2rem] max-w-md">
+          <div className="text-lg font-medium">
+            <FadeInParagraph
+              text="The world is a book and those who do not travel read only one
+              page."
+            />
+          </div>
+          <cite className="block text-right mt-4 text-gray-600">
+            <FadeInParagraph text="- Augustine of Hippo" />
+          </cite>
+        </blockquote>
 
-        <p className="my-16 pl-8 md:pl-8 py-4 mx-4 md:mx-10">
-          My passion is travel, I just love visiting new places, immersing
+        <div className="my-16 pl-8 md:pl-8 py-4 mx-4 md:mx-10">
+          <FadeInParagraph
+            text="My passion is travel, I just love visiting new places, immersing
           myself into local cultures of life around the world and discovering
-          the unexpected! Stepping off a plane, I’m always in a hurry to get my
+          the unexpected! Stepping off a plane, I am always in a hurry to get my
           passport stamped, reclaim my luggage and walk out of the arrivals hall
-          ready to begin a new adventure. <br />I love the planning, the
+          ready to begin a new adventure. 
+          I love the planning, the
           anticipation, the journey, be it by plane, train, bus or boat and of
           course, the actual holiday and finally all the wonderful memories and
           experiences I bring home that live with me forever. That was the
           original reason why I created this blog so that I could have an online
-          diary of my recent trips to look back on in the future. I’ve been
+          diary of my recent trips to look back on in the future. I have been
           surprised but thrilled that so many of you have taken an interest in
-          my travels and enjoy reading about my trips – it’s very encouraging
+          my travels and enjoy reading about my trips – it is very encouraging
           and makes me very happy! From starting as a hobby my blog has evolved
           into an award winning online travel resource providing inspiration to
-          fellow travellers.
-        </p>
-        {/* My Journey */}
-        <div className="relative h-screen w-full">
-          <Image
-            src={"/images/my_journey.jpg"}
-            alt="Background Image"
-            className="absolute inset-0 w-full h-full object-cover filter blur-sm"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-          ></Image>
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-0">
-            <h1 className="text-4xl text-white font-bold">My Journey</h1>
-            <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
-            <p className="text-xl text-white mt-4 max-w-lg">
-              Welcome to my corner of the internet! My journey into the world of
-              vlogging began in 2024, driven by an insatiable curiosity and a
-              desire to capture the essence of the places I visit and the people
-              I meet. Traveling has always been about more than just the
-              destination for me. It about the thrill of the unknown, the joy of
-              discovery, and the connections made along the way. On this site,
-              you&apos;ll find a diverse collection of vlogs that capture the
-              beauty and diversity of our world.
-            </p>
-          </div>
+          fellow travellers."
+          />
         </div>
       </section>
+
+      {/* My Journey */}
+      <div className="relative h-screen w-screen overflow-hidden">
+        <div className="bg-cover bg-center opacity-85 absolute inset-0">
+          <video
+            src="/videos/journey.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          ></video>
+        </div>
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-0">
+          <h1 className="text-4xl text-white font-bold">
+            <TypingEffect
+              strings={["My Journey", "My Adventures", "Building trust"]}
+            />
+          </h1>
+          <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
+          <p className="text-xl text-white mt-4 max-w-lg">
+            <TypingEffect
+              strings={[
+                "Welcome to my corner of the internet! My journey into the world of vlogging began in 2024, driven by an insatiable curiosity and a desire to capture the essence of the places I visit and the people I meet. Traveling has always been about more than just the destination for me. It about the thrill of the unknown, the joy of discovery, and the connections made along the way. On this site, you&apos;ll find a diverse collection of vlogs that capture the beauty and diversity of our world.",
+              ]}
+            />
+          </p>
+        </div>
+      </div>
 
       {/* Most Loved Places */}
       <Transition>
@@ -298,91 +323,36 @@ const About = () => {
           <div className="text-4xl font-bold text-center">Some Photographs</div>
           <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
           <div className="relative overflow-hidden w-full">
-            <div className="slide-track grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-5">
-              <Image
-                src={"/images/photo1.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo1"
-              />
-              <Image
-                src={"/images/photo2.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo2"
-              />
-              <Image
-                src={"/images/photo3.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo3"
-              />
-              <Image
-                src={"/images/card1.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo4"
-              />
-              <Image
-                src={"/images/my_journey.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo5"
-              />
-              <Image
-                src={"/images/photo4.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo6"
-              />
-              <Image
-                src={"/images/photo1.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo1"
-              />
-              <Image
-                src={"/images/photo2.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo2"
-              />
-              <Image
-                src={"/images/photo3.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo3"
-              />
-              <Image
-                src={"/images/card1.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo4"
-              />
-              <Image
-                src={"/images/my_journey.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo5"
-              />
-              <Image
-                src={"/images/photo4.jpg"}
-                width={400}
-                height={400}
-                className="hover:opacity-75 rounded-xl object-cover"
-                alt="photo6"
-              />
+            <div
+              className={`slide-track flex gap-3 ${
+                isHovered ? "animation-paused" : "animation-running"
+              }`}
+            >
+              {[
+                "/images/photo1.jpg",
+                "/images/photo2.jpg",
+                "/images/photo3.jpg",
+                "/images/card1.jpg",
+                "/images/my_journey.jpg",
+                "/images/photo4.jpg",
+                "/images/photo1.jpg",
+                "/images/photo2.jpg",
+                "/images/photo3.jpg",
+                "/images/card1.jpg",
+                "/images/my_journey.jpg",
+                "/images/photo4.jpg",
+              ].map((src, index) => (
+                <Image
+                  key={index}
+                  src={src}
+                  width={400}
+                  height={400}
+                  className="hover:opacity-75 rounded-xl object-cover"
+                  alt={`photo${index + 1}`}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                />
+              ))}
             </div>
           </div>
         </section>

@@ -1,22 +1,37 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { Syncopate } from "next/font/google";
+import React from "react";
+import { motion } from "framer-motion";
 import { TypingEffect } from "src/app/page_transition";
-import { Transition } from "../../transition";
+import Image from "next/image";
+import FadeInFromLeftParagraph from "../../components/paragraphTransition";
+import Link from "next/link";
+import FadeInParagraph from "../../components/FadeIn";
+
+const cardAnimation = {
+  initial: { opacity: 0, y: 50 },
+  animate: { opacity: 1, y: 0 },
+  whileHover: {
+    scale: 1.05,
+    boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
+    rotate: 1,
+  },
+  transition: { duration: 0.5, type: "spring", stiffness: 300 },
+};
 
 export default function Home() {
   return (
     <div className="overflow-hidden">
       <header className="bg-gray-900 text-white relative">
-        <div
-          className="h-screen w-full bg-cover bg-center opacity-85"
-          style={{
-            backgroundImage: "url(/images/hero_Image.jpg)",
-            opacity: "50%",
-          }}
-        ></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 text-center">
+        <div className="w-full bg-cover bg-center opacity-85">
+          <video
+            src="/videos/hero_section.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          ></video>
+        </div>
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-center">
           <h1 className="text-2xl md:text-4xl lg:text-2xl font-bold">
             Explore the Colorful World
           </h1>
@@ -27,7 +42,7 @@ export default function Home() {
                 "Wonderful Gift",
                 "Remarkable Tour",
                 "Daring Trip",
-                "Epic Aventure",
+                "Epic Adventure",
                 "Fantastic Event",
                 "Marvelous Trek",
               ]}
@@ -42,39 +57,40 @@ export default function Home() {
         <div className="sponsors py-12 h-auto lg:h-[90vh] mb-8">
           <h1 className="font-bold text-3xl text-center">Featured By</h1>
           <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl mb-6"></div>
-          <div class="grid grid-flow-col grid-col-4 justify-center gap-3">
+          <div className="grid grid-flow-col grid-col-4 justify-center gap-3">
             <Image
               src="/images/logo1.png"
               alt="sponsor1"
               width={150}
               height={150}
-              class="mx-auto object-center transform transition duration-500 hover:scale-110"
+              className="mx-auto object-center transform transition duration-500 hover:scale-110"
             />
             <Image
               src="/images/logo2.png"
               alt="sponsor2"
               width={150}
               height={150}
-              class="mx-auto object-center transform transition duration-500 hover:scale-110"
+              className="mx-auto object-center transform transition duration-500 hover:scale-110"
             />
             <Image
               src="/images/logo3.png"
               alt="sponsor3"
               width={150}
               height={150}
-              class="mx-auto object-center transform transition duration-500 hover:scale-110"
+              className="mx-auto object-center transform transition duration-500 hover:scale-110"
             />
             <Image
               src="/images/logo4.png"
               alt="sponsor4"
               width={150}
               height={150}
-              class="mx-auto object-center transform transition duration-500 hover:scale-110"
+              className="mx-auto object-center transform transition duration-500 hover:scale-110"
             />
           </div>
-          <Transition>
-            <p className="text-justify px-4 md:px-20 py-8">
-              We extend our heartfelt gratitude to our sponsors for their
+          <div>
+            <div className="text-justify px-4 md:px-20 py-8">
+              <FadeInFromLeftParagraph
+                text="We extend our heartfelt gratitude to our sponsors for their
               generous support and commitment. Your contributions have been
               invaluable in making our event a resounding success. Your
               partnership not only provides essential resources but also
@@ -93,93 +109,91 @@ export default function Home() {
               strong foundation for future successes, and we are excited about
               the possibilities that lie ahead. Your commitment is the driving
               force behind our efforts, and we are honored to have you by our
-              side.
-            </p>
-          </Transition>
-        </div>
-        <Transition>
-          <div className="grid grid-cols-1 lg:grid-cols-2 bg-gray-300 bg-opacity-50 py-16 px-8 mt-16">
-            <div className="w-full pl-8 p-10">
-              <h1 className="font-bold text-3xl text-center">Travel With Us</h1>
-              <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
-              <p className="text-justify">
-                Embark on an unforgettable journey with us, where adventure and
-                luxury converge to create extraordinary travel experiences. Our
-                meticulously crafted itineraries are designed to cater to your
-                unique interests and preferences, ensuring that every moment of
-                your trip is nothing short of spectacular. Whether you are
-                seeking the thrill of exploring uncharted territories, the
-                serenity of pristine landscapes, or the rich cultural immersion
-                in exotic destinations, our expert team is dedicated to making
-                your travel dreams a reality. We prioritize your comfort and
-                satisfaction, providing personalized services that go above and
-                beyond.
-              </p>
+              side."
+              />
             </div>
-            <div class="container mx-auto py-8">
-              <div class="-m-1 flex flex-wrap md:-m-2">
-                <div class="flex w-1/2 flex-wrap">
-                  <div class="w-1/2 p-1 md:p-2">
-                    <Image
-                      alt="gallery"
-                      class="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
-                      src={"/images/astro.jpg"}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="w-1/2 p-1 md:p-2">
-                    <Image
-                      alt="gallery"
-                      class="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
-                      src={"/images/slider1.jpg"}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="w-full p-1 md:p-2">
-                    <Image
-                      alt="gallery"
-                      class="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
-                      src={"/images/photo2.jpg"}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 bg-gray-300 bg-opacity-50 py-16 px-8 mt-16">
+          <div className="w-full pl-8 p-10">
+            <h1 className="font-bold text-3xl text-center">Travel With Us</h1>
+            <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
+            <FadeInParagraph
+              text="Embark on an unforgettable journey with us, where adventure and
+              luxury converge to create extraordinary travel experiences. Our
+              meticulously crafted itineraries are designed to cater to your
+              unique interests and preferences, ensuring that every moment of
+              your trip is nothing short of spectacular. Whether you are seeking
+              the thrill of exploring uncharted territories, the serenity of
+              pristine landscapes, or the rich cultural immersion in exotic
+              destinations, our expert team is dedicated to making your travel
+              dreams a reality. We prioritize your comfort and satisfaction,
+              providing personalized services that go above and beyond."
+            />
+          </div>
+          <div className="container mx-auto py-8">
+            <div className="-m-1 flex flex-wrap md:-m-2">
+              <div className="flex w-1/2 flex-wrap">
+                <div className="w-1/2 p-1 md:p-2">
+                  <Image
+                    alt="gallery"
+                    className="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
+                    src={"/images/astro.jpg"}
+                    width={100}
+                    height={100}
+                  />
                 </div>
-                <div class="flex w-1/2 flex-wrap">
-                  <div class="w-full p-1 md:p-2">
-                    <Image
-                      alt="gallery"
-                      class="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
-                      src={"/images/mountain.jpg"}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="w-1/2 p-1 md:p-2">
-                    <Image
-                      alt="gallery"
-                      class="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
-                      src={"/images/about_us.jpg"}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="w-1/2 p-1 md:p-2">
-                    <Image
-                      alt="gallery"
-                      class="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
-                      src={"/images/photo3.jpg"}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
+                <div className="w-1/2 p-1 md:p-2">
+                  <Image
+                    alt="gallery"
+                    className="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
+                    src={"/images/slider1.jpg"}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+                <div className="w-full p-1 md:p-2">
+                  <Image
+                    alt="gallery"
+                    className="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
+                    src={"/images/photo2.jpg"}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              </div>
+              <div className="flex w-1/2 flex-wrap">
+                <div className="w-full p-1 md:p-2">
+                  <Image
+                    alt="gallery"
+                    className="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
+                    src={"/images/mountain.jpg"}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+                <div className="w-1/2 p-1 md:p-2">
+                  <Image
+                    alt="gallery"
+                    className="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
+                    src={"/images/about_us.jpg"}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+                <div className="w-1/2 p-1 md:p-2">
+                  <Image
+                    alt="gallery"
+                    className="block h-full w-full rounded-lg object-cover object-center transform transition duration-500 hover:scale-110"
+                    src={"/images/photo3.jpg"}
+                    width={100}
+                    height={100}
+                  />
                 </div>
               </div>
             </div>
           </div>
-        </Transition>
+        </div>
       </section>
 
       {/* Latest Blogs */}
@@ -191,7 +205,13 @@ export default function Home() {
             </h2>
             <div className="bg-pink-600 w-20 h-1 mx-auto my-4 rounded-xl"></div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg shadow-lg p-8">
+              <motion.div
+                className="bg-white rounded-lg shadow-lg p-8"
+                initial={cardAnimation.initial}
+                animate={cardAnimation.animate}
+                whileHover={cardAnimation.whileHover}
+                transition={cardAnimation.transition}
+              >
                 <div className="relative overflow-hidden group">
                   <Image
                     className="object-cover w-full h-full transform transition duration-500 group-hover:scale-110"
@@ -218,8 +238,15 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg p-8">
+              </motion.div>
+
+              <motion.div
+                className="bg-white rounded-lg shadow-lg p-8"
+                initial={cardAnimation.initial}
+                animate={cardAnimation.animate}
+                whileHover={cardAnimation.whileHover}
+                transition={cardAnimation.transition}
+              >
                 <div className="relative overflow-hidden group">
                   <Image
                     className="object-cover w-full h-full transform transition duration-500 group-hover:scale-110"
@@ -245,8 +272,15 @@ export default function Home() {
                     Explore More
                   </button>
                 </div>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg p-8">
+              </motion.div>
+
+              <motion.div
+                className="bg-white rounded-lg shadow-lg p-8"
+                initial={cardAnimation.initial}
+                animate={cardAnimation.animate}
+                whileHover={cardAnimation.whileHover}
+                transition={cardAnimation.transition}
+              >
                 <div className="relative overflow-hidden group">
                   <Image
                     className="object-cover w-full h-full transform transition duration-500 group-hover:scale-110"
@@ -271,7 +305,7 @@ export default function Home() {
                     Explore More
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
